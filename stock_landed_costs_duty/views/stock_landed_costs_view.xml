@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_stock_landed_cost_form_duty" model="ir.ui.view">
+            <field name="name">stock.landed.cost.form.duty</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//separator[@string='Cost Lines']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//sheet/group[1]" position="after">
+                    <group>
+                        <group>
+                            <separator string="Cost Lines"/>
+                        </group>
+                        <group states='draft'>
+                            <button name="calculate_duty" string="Calculate Duty" type="object" class="oe_right"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
