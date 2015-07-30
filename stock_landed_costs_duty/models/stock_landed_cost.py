@@ -21,7 +21,8 @@ class stock_landed_cost(models.Model):
                 for line in lines:  # update the correct line with the duty amount
                     if not line['move_id'] == move.id:
                         continue
-                    line.update({'duty': move.product_id and move.product_id.duty})
+                    duty = move.product_id and move.product_id.duty * line['former_cost']
+                    line.update({'duty': duty})
         return lines
 
     @api.multi
@@ -75,7 +76,7 @@ class stock_landed_cost(models.Model):
                     self.pool.get('stock.valuation.adjustment.lines').create(cr, uid, v, context=context)
                 total_qty += v.get('quantity', 0.0)
                 total_cost += v.get('former_cost', 0.0)
-                total_duty += total_cost * v.get('duty', 0.0)
+                total_duty += v.get('duty', 0.0)
                 total_weight += v.get('weight', 0.0)
                 total_volume += v.get('volume', 0.0)
                 total_line += 1
