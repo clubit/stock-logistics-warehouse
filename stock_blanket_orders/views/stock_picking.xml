@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="stock_picking_blanket_orders_form_view" model="ir.ui.view">
+      <field name="name">stock.picking.blanket.orders.form</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="model">stock.picking</field>
+      <field name="arch" type="xml">
+        <field name="date_done" position="before">
+          <field name="show_cbm"/>
+          <field name="is_loaded"/>
+          <field name="is_shipped"/>
+          <field name="date_etd"/>
+        </field>
+      </field>
+    </record>
+    <record id="stock_picking_blanket_orders_search_view" model="ir.ui.view">
+        <field name="name">stock.picking.blanket.orders.search</field>
+        <field name="inherit_id" ref="stock.quant_search_view"/>
+        <field name="model">stock.quant</field>
+        <field name="arch" type="xml">
+            <filter name="internal_loc" position="after">
+                <separator/>
+                <filter string="gte 90d" name="gte90d" domain="[('in_date', '&lt;=', ((context_today()+relativedelta(days=-90)).strftime('%%Y-%%m-%%d')))]" help="older than 90 days"/>
+                <filter string="gte 60d lt 90d" name="gte60dlt90d" domain="['&amp;',('in_date', '&gt;', ((context_today()+relativedelta(days=-90)).strftime('%%Y-%%m-%%d'))),('in_date', '&lt;=', ((context_today()+relativedelta(days=-60)).strftime('%%Y-%%m-%%d')))]"/>
+            </filter>
+        </field>
+    </record>
+  </data>
+</openerp>
