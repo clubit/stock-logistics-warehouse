@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="stock_picking_blanket_orders_report_list" model="ir.ui.view">
+      <field name="name">report.blanket.forecast.list</field>
+      <field name="model">report.blanket.forecast</field>
+      <field name="arch" type="xml">
+        <tree delete="false" string="Forecast">
+          <field name="product_product"/>
+          <field name="current_stock"/>
+          <field name="outgoing_stock"/>
+          <field name="incoming_stock"/>
+          <field name="forecasted_stock"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_report_blanket_forecast">
+      <field name="name">Forecast Stock BLO</field>
+      <field name="res_model">report.blanket.forecast</field>
+      <field name="view_type">form</field>
+      <field name="context">{}</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help">No help today</field>
+    </record>
+
+    <menuitem parent="stock.next_id_61" action="action_report_blanket_forecast" id="menu_blanket_forecast" sequence="3"/>
+  </data>
+</openerp>

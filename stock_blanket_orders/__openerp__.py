@@ -32,7 +32,8 @@
         'stock',
     ],
     'data': [
-        'views/stock_picking.xml'
+        'views/stock_picking.xml',
+        'views/report_forecast.xml'
     ],
     'installable': True,
     'application': False,

@@ -8,6 +8,8 @@
       <field name="arch" type="xml">
         <field name="date_done" position="before">
           <field name="show_cbm"/>
+          <field name="cbm_total"  attrs="{'invisible': [('show_cbm','=',False)]}"/>
+
           <field name="is_loaded"/>
           <field name="is_shipped"/>
           <field name="date_etd"/>
