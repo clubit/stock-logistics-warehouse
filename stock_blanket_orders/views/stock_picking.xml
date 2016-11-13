@@ -15,6 +15,19 @@
         </field>
       </field>
     </record>
+    <record id="stock_picking_blanket_orders_tree_view" model="ir.ui.view">
+      <field name="name">stock.picking.blanket.orders.tree</field>
+      <field name="inherit_id" ref="stock.vpicktree"/>
+      <field name="model">stock.picking</field>
+      <field name="arch" type="xml">
+          <field name="min_date" position="after">
+            <field name="date_etd" invisible="0"/>
+            <field name="cbm_total"/>
+            <field name="is_loaded"/>
+            <field name="is_shipped"/>
+          </field>
+      </field>
+    </record>
     <record id="stock_move_blanket_orders_cbm_view" model="ir.ui.view">
         <field name="name">stock.move.blanket.orders.cbm</field>
         <field name="inherit_id" ref="stock.view_move_tree"/>
